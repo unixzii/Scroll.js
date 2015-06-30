@@ -15,4 +15,4 @@ Simply import the `scroll.js`(or `scroll.min.js`) file into your `head` tag,just
 
 # Demonstrate
 You can visit this demo on CodePen:
-(Scroll.js - CodePen)[]
+(Scroll.js - CodePen)[http://codepen.io/cyandev/pen/mJpgKX]
