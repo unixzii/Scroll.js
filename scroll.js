@@ -52,9 +52,12 @@
 	window['a'] = runner;
 
 	window.onload = function () {
-		bodyEl = document.getElementsByTagName('body')[0];
-		bodyEl.onmousewheel = onWheel;
-		isReady = true;
+		var ua = navigator.userAgent.toLowerCase();
+  		if ((ua.indexOf("windows") != -1 || ua.indexOf("win32") != -1)) {
+			bodyEl = document.getElementsByTagName('body')[0];
+			bodyEl.onmousewheel = onWheel;
+			isReady = true;
+  		}
 	}
 	
 	var onWheel = function (e) {
