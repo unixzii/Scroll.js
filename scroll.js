@@ -6,6 +6,11 @@
 (function () {
 	var isReady = false;
 	var bodyEl;
+	
+	var decelerateFactor = 10;
+	var velocityDelta = 20000;
+	var initVelocity = 10000;
+	var sensitive = 10;
 
 	var Runner = function () {
 		this.currentValue = 0;
@@ -18,7 +23,7 @@
 
 	Runner.prototype.step = function () {
 		this.currentValue += (this.direction ? this.velocity : -this.velocity) / 1000;
-		this.velocity += -this.velocity / 10;
+		this.velocity += -this.velocity / decelerateFactor;
 
 		if (this.velocity <= 1) {
 			this.stop();
@@ -65,13 +70,13 @@
 
 		runner.currentValue = bodyEl.scrollTop;
 		if (runner.isRunning) {
-			var d = 20000 + runner.velocity / 10;
+			var d = velocityDelta + runner.velocity / sensitive;
 			if ((e.wheelDelta < 0) != runner.direction) {
 				d *= -1;
 			}
 			runner.velocity += d;
 		} else {
-			runner.velocity = 10000;
+			runner.velocity = initVelocity;
 		}
 		runner.direction = e.wheelDelta < 0;
 		runner.start(doScroll);
